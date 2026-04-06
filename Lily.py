@@ -148,7 +148,8 @@ with c1:
 "Extrañarte es el precio que pago por tener a la mejor novia del mundo. ❤️",
 "Incluso cuando hablamos, ya estoy extrañando tenerte frente a mí. ✨",
 "Eres la razón por la que siempre miro el reloj esperando el momento de vernos. 🕒",
-"Te extraño con cada pedacito de mi alma. No tardes mucho en aparecer. 🌹"
+"Te extraño con cada pedacito de mi alma. No tardes mucho en aparecer. 🌹",
+"Te amo muchititote mi princesa hermosa ❤️"
         ])
     if st.button("🥺 Mal día"):
         st.session_state.last_msg = random.choice([
@@ -178,12 +179,11 @@ with c2:
         st.session_state.last_msg = random.choice([
             "💋 *Un beso dulce y largo, de esos que te hacen olvidar todo el mundo.* 💋",
             "💋 *Te envío el beso más tierno justo en tu frente, para que sepas que te cuido.* 💋",
-            "💋 *Un beso de esos que nos dábamos y que pronto volveremos a darnos.* 💋",
+            "💋 *Un beso de esos que quiero darte y que pronto volveremos nos daremos.* 💋",
             "💋 *Siente mi cariño cruzando la pantalla... te amo infinito.* 💋",
             "💋 *Beso robado (y enviado con mucho amor) para mi novia favorita.* 💋",
             "💋 *Un beso dulce y largo, de esos que te hacen olvidar todo el mundo.* 💋",
 "💋 *Te envío el beso más tierno justo en tu frente, para que sepas que te cuido.* 💋",
-"💋 *Un beso de esos que nos dábamos y que pronto volveremos a darnos.* 💋",
 "💋 *Siente mi cariño cruzando la pantalla... te amo infinito.* 💋",
 "💋 *Beso robado (y enviado con mucho amor) para mi novia favorita.* 💋",
 "💋 *Este beso va con una promesa: nunca soltarte.* 💋",
