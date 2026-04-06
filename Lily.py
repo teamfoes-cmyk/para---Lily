@@ -1,6 +1,6 @@
 import streamlit as st
 import random
-from datetime import datetime
+from datetime import datetime, timedelta
 import time
 
 # Configuración
@@ -43,11 +43,14 @@ st.markdown("""
     </style>
     """, unsafe_allow_html=True)
 
-# --- LÓGICA DE TIEMPO ---
-fecha_inicio = datetime(2026, 3, 15, 0, 0, 0)
-ahora = datetime.now() 
+# --- LÓGICA DE TIEMPO (Limpia) ---
+fecha_inicio = datetime(2026, 3, 15, 18, 0, 0)
+# Ajuste de zona horaria (UTC a tu hora local)
+ahora = datetime.now() - timedelta(hours=4)
 
 diff = ahora - fecha_inicio
+
+# Cálculo de meses para el mensaje especial
 meses_juntos = (ahora.year - fecha_inicio.year) * 12 + (ahora.month - fecha_inicio.month)
 if ahora.day < fecha_inicio.day:
     meses_juntos -= 1
@@ -109,7 +112,7 @@ if 'last_msg' not in st.session_state:
 
 # --- TÍTULO RESPONSIVE REFORZADO ---
 st.markdown("""
-    <h1 style='
+    <h2 style='
         text-align: center; 
         font-size: 6.5vw; 
         color: #ffffff; 
