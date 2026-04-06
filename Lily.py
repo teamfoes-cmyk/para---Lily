@@ -108,7 +108,23 @@ if ahora.day == 15:
 if 'last_msg' not in st.session_state:
     st.session_state.last_msg = "Elige cómo te sientes para decirte algo..."
 
-st.subheader("¿Cómo está tu corazón ahora?")
+# --- TÍTULO RESPONSIVE REFORZADO ---
+st.markdown("""
+    <h1 style='
+        text-align: center; 
+        font-size: 6.5vw; 
+        color: #ffffff; 
+        text-shadow: 2px 2px 10px #ff4d6d;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
+        font-family: sans-serif;
+    '>
+        ¿Como está tu corazon ahora?
+    </h2>
+    """, unsafe_allow_html=True)
+# Aquí siguen tus columnas c1 y c2 con los botones...
 c1, c2 = st.columns(2)
 
 with c1:
