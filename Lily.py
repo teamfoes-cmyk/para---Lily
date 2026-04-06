@@ -55,11 +55,18 @@ if ahora.day < fecha_inicio.day:
 st.title("🌙❤️ Nuestro Rincón Eterno❤️")
 
 # Contador
-col1, col2, col3, col4 = st.columns(4)
-col1.metric("DÍAS", abs(diff.days))
-col2.metric("HORAS", diff.seconds // 3600)
-col3.metric("MINUTOS", (diff.seconds % 3600) // 60)
-col4.metric("SEGUNDOS", diff.seconds % 60)
+# --- CONTADOR COMPACTO PARA MÓVIL ---
+st.write("---")
+html_contador = f"""
+<div style="display: flex; justify-content: space-around; text-align: center; background: rgba(255,255,255,0.05); padding: 15px; border-radius: 15px; border: 1px solid #ff4d6d;">
+    <div><div style="color: white; font-size: 10px;">DÍAS</div><div style="color: #ffb3c1; font-size: 25px; font-weight: bold; text-shadow: 0 0 10px #ff4d6d;">{abs(diff.days)}</div></div>
+    <div><div style="color: white; font-size: 10px;">HORAS</div><div style="color: #ffb3c1; font-size: 25px; font-weight: bold; text-shadow: 0 0 10px #ff4d6d;">{diff.seconds // 3600}</div></div>
+    <div><div style="color: white; font-size: 10px;">MINS</div><div style="color: #ffb3c1; font-size: 25px; font-weight: bold; text-shadow: 0 0 10px #ff4d6d;">{(diff.seconds % 3600) // 60}</div></div>
+    <div><div style="color: white; font-size: 10px;">SEGS</div><div style="color: #ffb3c1; font-size: 25px; font-weight: bold; text-shadow: 0 0 10px #ff4d6d;">{diff.seconds % 60}</div></div>
+</div>
+"""
+st.markdown(html_contador, unsafe_allow_html=True)
+st.write("---")
 
 st.write("---")
 
@@ -130,5 +137,5 @@ st.markdown(f'<div class="mensaje-card" style="background: rgba(255,255,255,0.05
 st.write("---")
 st.caption(f"📍 Hecho con amor para Lily. Sincronizado: {abs(diff.days)} días.")
 
-time.sleep(5)
+time.sleep(1)
 st.rerun()
