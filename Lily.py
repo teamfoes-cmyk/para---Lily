@@ -121,7 +121,7 @@ st.markdown("""
         padding-bottom: 0px;
         font-family: sans-serif;
     '>
-        ¿Como está tu corazon ahora?
+        ¿Como está tu corazón ahora?
     </h2>
     """, unsafe_allow_html=True)
 # Aquí siguen tus columnas c1 y c2 con los botones...
