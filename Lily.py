@@ -3,8 +3,45 @@ import random
 from datetime import datetime, timedelta
 import time
 
-# Configuración
+# 1. Configuración de la página
 st.set_page_config(page_title="Para mi Lily ❤️", page_icon="❤️")
+
+# --- SISTEMA DE LLAVE PRIVADA ---
+if 'autenticado' not in st.session_state:
+    st.session_state.autenticado = False
+
+# Si no está autenticado, mostramos la pantalla de bloqueo
+if not st.session_state.autenticado:
+    st.markdown("""
+        <style>
+        .stApp { background-color: #0f0f0f; }
+        .login-text {
+            text-align: center;
+            color: #ffb3c1;
+            text-shadow: 0px 0px 10px #ff4d6d;
+            font-family: sans-serif;
+            margin-top: 50px;
+        }
+        </style>
+        <h1 class="login-text">🔒 NUESTRO LUGAR SECRETO</h1>
+        <p style='text-align: center; color: white;'>Introduce nuestra fecha especial para entrar (DDMM)</p>
+    """, unsafe_allow_html=True)
+    
+    # Cuadro para la clave centrada
+    col_login, col_mid, col_login2 = st.columns([1, 2, 1])
+    with col_mid:
+        clave = st.text_input("", type="password", placeholder="Escribe aquí...")
+        if clave == "1503": # Tu fecha: 15 de marzo
+            st.session_state.autenticado = True
+            st.balloons()
+            time.sleep(1)
+            st.rerun()
+        elif clave != "":
+            st.error("Esa no es la fecha, inténtalo de nuevo mi amor... ❤️")
+    
+    st.stop() # Detiene el código aquí si no hay clave
+
+# --- TODO EL CÓDIGO SIGUIENTE SOLO SE VE SI SE PONE LA CLAVE CORRECTA ---
 
 # --- ESTILO CSS (Números Rosas + Etiquetas Blancas) ---
 st.markdown("""
@@ -72,7 +109,7 @@ st.markdown("""
         ❤️ Nuestro Rincón Eterno ❤️
     </h1>
     """, unsafe_allow_html=True)
-# Contador
+
 # --- CONTADOR COMPACTO PARA MÓVIL ---
 st.write("---")
 html_contador = f"""
@@ -84,8 +121,6 @@ html_contador = f"""
 </div>
 """
 st.markdown(html_contador, unsafe_allow_html=True)
-st.write("---")
-
 st.write("---")
 
 # --- MENSAJE ESPECIAL DEL 15 ---
@@ -110,7 +145,7 @@ if ahora.day == 15:
 if 'last_msg' not in st.session_state:
     st.session_state.last_msg = "Elige cómo te sientes para decirte algo..."
 
-# --- TÍTULO RESPONSIVE REFORZADO ---
+# --- PREGUNTA RESPONSIVE ---
 st.markdown("""
     <h2 style='
         text-align: center; 
@@ -126,7 +161,7 @@ st.markdown("""
         ¿Como está tu corazón ahora?
     </h2>
     """, unsafe_allow_html=True)
-# Aquí siguen tus columnas c1 y c2 con los botones...
+
 c1, c2 = st.columns(2)
 
 with c1:
@@ -137,22 +172,17 @@ with c1:
             "Me haces falta en cada silencio de mi día. Eres mi pensamiento favorito. 🌙",
             "Contando las horas para poder darte ese cariño que tanto nos hace falta. Te amo. 🧸",
             "Te extraño tanto que a veces siento que me falta algo si no te hablo. 🌹",
-            "Yo te extraño mucho más... cada minuto cuento para estar cerquita de ti. ✨",
-            "Cierra los ojos un momento, siente mi abrazo. No importa la distancia, estoy ahí. ❤️",
-            "Me haces falta en cada silencio de mi día. Eres mi pensamiento favorito. 🌙",
-            "Contando las horas para poder darte ese cariño que tanto nos hace falta. Te amo. 🧸",
-            "Te extraño tanto que a veces siento que me falta algo si no te hablo. 🌹",
-"Eres el 'vuelve pronto' que siempre tengo en la punta de la lengua. ✈️",
-"Mi día no está completo hasta que escucho de ti o te leo. Te espero siempre. ❤️",
-"Extraño tu risa, extraño tus ojos y extraño la paz que me das. ✨",
-"No hay distancia que pueda separar lo que mi corazón siente por ti. 🔐",
-"Ojalá estuvieras aquí para no tener que extrañarte tanto. 🥺",
-"Cada canción romántica que escucho me lleva directo a ti. 🎶",
-"Extrañarte es el precio que pago por tener a la mejor novia del mundo. ❤️",
-"Incluso cuando hablamos, ya estoy extrañando tenerte frente a mí. ✨",
-"Eres la razón por la que siempre miro el reloj esperando el momento de vernos. 🕒",
-"Te extraño con cada pedacito de mi alma. No tardes mucho en aparecer. 🌹",
-"Te amo muchititote mi princesa hermosa ❤️"
+            "Eres el 'vuelve pronto' que siempre tengo en la punta de la lengua. ✈️",
+            "Mi día no está completo hasta que escucho de ti o te leo. Te espero siempre. ❤️",
+            "Extraño tu risa, extraño tus ojos y extraño la paz que me das. ✨",
+            "No hay distancia que pueda separar lo que mi corazón siente por ti. 🔐",
+            "Ojalá estuvieras aquí para no tener que extrañarte tanto. 🥺",
+            "Cada canción romántica que escucho me lleva directo a ti. 🎶",
+            "Extrañarte es el precio que pago por tener a la mejor novia del mundo. ❤️",
+            "Incluso cuando hablamos, ya estoy extrañando tenerte frente a mí. ✨",
+            "Eres la razón por la que siempre miro el reloj esperando el momento de vernos. 🕒",
+            "Te extraño con cada pedacito de mi alma. No tardes mucho en aparecer. 🌹",
+            "Te amo muchititote mi princesa hermosa ❤️"
         ])
     if st.button("🥺 Mal día"):
         st.session_state.last_msg = random.choice([
@@ -161,19 +191,16 @@ with c1:
             "Siente mi mano en la tuya. Mañana será un mejor día y yo estaré ahí para verlo. ✨",
             "No dejes que nada te apague esa luz tan linda que tienes. Yo te protejo. 🛡️❤️",
             "Ven a descansar aquí conmigo. Suelta todo lo malo, yo te sostengo. 🕊️",
-            "Respira mi niña, aquí estoy. Deja que yo cuide tu corazón un ratito hoy. ❤️",
-"Siente mi mano en la tuya. Mañana será un mejor día y yo estaré ahí para verlo. ✨",
-"No dejes que nada te apague esa luz tan linda que tienes. Yo te protejo. 🛡️❤️",
-"Si el mundo fue gris hoy, yo te lo pinto de colores en un ratito. 🎨❤️",
-"Llora si quieres, desahógate... aquí siempre tendrás un refugio seguro, conmigo amor. ❤️🤗",
-"Eres más valiente de lo que crees. No dejes que un mal día te haga dudar de ti. ✨",
-"Aquí no hay problemas, solo estamos tú y yo. Olvida el resto por un momento. ❤️",
-"Estoy tan orgulloso de cómo manejas las cosas, incluso cuando son difíciles. 🌟",
-"¿Quieres un abrazo infinito? Te lo envío con toda mi fuerza ahora mismo. 🧸",
-"Mañana el sol saldrá de nuevo y yo estaré ahí para recordarte lo mucho que vales. ☀️",
-"No estás sola en esto, nunca más. Mis hombros están aquí para ti. 🤝❤️",
-"Tómate un respiro, mi amor. Te mereces toda la paz del mundo. 🌊",
-"A veces el mundo es pesado, pero entre los dos la carga es más ligera. ❤️"
+            "Si el mundo fue gris hoy, yo te lo pinto de colores en un ratito. 🎨❤️",
+            "Llora si quieres, desahógate... aquí siempre tendrás un refugio seguro, conmigo amor. ❤️🤗",
+            "Eres más valiente de lo que crees. No dejes que un mal día te haga dudar de ti. ✨",
+            "Aquí no hay problemas, solo estamos tú y yo. Olvida el resto por un momento. ❤️",
+            "Estoy tan orgulloso de cómo manejas las cosas, incluso cuando son difíciles. 🌟",
+            "¿Quieres un abrazo infinito? Te lo envío con toda mi fuerza ahora mismo. 🧸",
+            "Mañana el sol saldrá de nuevo y yo estaré ahí para recordarte lo mucho que vales. ☀️",
+            "No estás sola en esto, nunca más. Mis hombros están aquí para ti. 🤝❤️",
+            "Tómate un respiro, mi amor. Te mereces toda la paz del mundo. 🌊",
+            "A veces el mundo es pesado, pero entre los dos la carga es más ligera. ❤️"
         ])
 
 with c2:
@@ -185,15 +212,11 @@ with c2:
             "💋 *Un beso de esos que quiero darte y que pronto volveremos nos daremos.* 💋",
             "💋 *Siente mi cariño cruzando la pantalla... te amo infinito.* 💋",
             "💋 *Beso robado (y enviado con mucho amor) para mi novia favorita.* 💋",
-            "💋 *Un beso dulce y largo, de esos que te hacen olvidar todo el mundo.* 💋",
-"💋 *Te envío el beso más tierno justo en tu frente, para que sepas que te cuido.* 💋",
-"💋 *Siente mi cariño cruzando la pantalla... te amo infinito.* 💋",
-"💋 *Beso robado (y enviado con mucho amor) para mi novia favorita.* 💋",
-"💋 *Este beso va con una promesa: nunca soltarte.* 💋",
-"💋 *Un beso en la mejilla para que sonrías ahora mismo.* 💋",
-"💋 *Cierra los ojos... ¿lo sentiste? Te amo.* 💋",
-"💋 *Te envío un beso cargado de toda la falta que me haces.* 💋",
-"💋 *Mil besos repartidos por toda tu cara solo para verte reír.* 💋"
+            "💋 *Este beso va con una promesa: nunca soltarte.* 💋",
+            "💋 *Un beso en la mejilla para que sonrías ahora mismo.* 💋",
+            "💋 *Cierra los ojos... ¿lo sentiste? Te amo.* 💋",
+            "💋 *Te envío un beso cargado de toda la falta que me haces.* 💋",
+            "💋 *Mil besos repartidos por toda tu cara solo para verte reír.* 💋"
         ])
     if st.button("✨ El futuro"):
         st.session_state.last_msg = random.choice([
@@ -202,16 +225,11 @@ with c2:
             "Tú y yo contra el mundo, siempre de la mano, sin soltarnos nunca más. 🤝",
             "Veo una vida llena de risas contigo. Ese es mi único plan. 🌎✨",
             "Sé que lo que viene es hermoso, porque lo vamos a construir juntos. 🔑❤️",
-            "Nos veo cumpliendo cada cosa que soñamos. No nos va a faltar nada. 🏡💍",
-"Te prometo un futuro donde lo que más sobre sea el cariño y la paz. ❤️",
-"Tú y yo contra el mundo, siempre de la mano, sin soltarnos nunca más. 🤝",
-"Veo una vida llena de risas contigo. Ese es mi único plan. 🌎✨",
-"Sé que lo que viene es hermoso, porque lo vamos a construir juntos. 🔑❤️",
-"El futuro me da mucha paz porque sé que tú estarás en él. ✨",
-"Imagino despertar y que lo primero que vea sea tu sonrisa. Falta poco. ☀️",
-"Nuestra historia apenas está escribiendo sus mejores capítulos. 📖❤️",
-"No sé qué nos depare el destino, pero sé que quiero enfrentarlo contigo. 🔐",
-"Te veo siendo mi compañera de vida por muchísimos años más. Te amo. ❤️"
+            "El futuro me da mucha paz porque sé que tú estarás en él. ✨",
+            "Imagino despertar y que lo primero que vea sea tu sonrisa. Falta poco. ☀️",
+            "Nuestra historia apenas está escribiendo sus mejores capítulos. 📖❤️",
+            "No sé qué nos depare el destino, pero sé que quiero enfrentarlo contigo. 🔐",
+            "Te veo siendo mi compañera de vida por muchísimos años más. Te amo. ❤️"
         ])
 
 st.markdown(f'<div class="mensaje-card" style="background: rgba(255,255,255,0.05);">{st.session_state.last_msg}</div>', unsafe_allow_html=True)
