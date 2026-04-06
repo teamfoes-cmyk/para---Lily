@@ -52,7 +52,7 @@ meses_juntos = (ahora.year - fecha_inicio.year) * 12 + (ahora.month - fecha_inic
 if ahora.day < fecha_inicio.day:
     meses_juntos -= 1
 
-st.title("🌙❤️ Nuestro Rincón Eterno❤️")
+st.title("❤️ Nuestro Rincón Eterno❤️")
 
 # Contador
 # --- CONTADOR COMPACTO PARA MÓVIL ---
