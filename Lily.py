@@ -44,7 +44,7 @@ st.markdown("""
     """, unsafe_allow_html=True)
 
 # --- LÓGICA DE TIEMPO ---
-fecha_inicio = datetime(2026, 4, 6, 14, 0, 0)
+fecha_inicio = datetime(2026, 3, 15, 0, 0, 0)
 ahora = datetime.now() 
 
 diff = ahora - fecha_inicio
