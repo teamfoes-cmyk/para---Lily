@@ -52,16 +52,20 @@ meses_juntos = (ahora.year - fecha_inicio.year) * 12 + (ahora.month - fecha_inic
 if ahora.day < fecha_inicio.day:
     meses_juntos -= 1
 
+# --- TÍTULO RESPONSIVE REFORZADO ---
 st.markdown("""
     <h1 style='
         text-align: center; 
-        font-size: 8vw; 
+        font-size: 6.5vw; 
         color: #ffffff; 
         text-shadow: 2px 2px 10px #ff4d6d;
-        padding-top: 10px;
+        white-space: nowrap;
+        overflow: hidden;
+        margin-bottom: 0px;
+        padding-bottom: 0px;
         font-family: sans-serif;
     '>
-        🌙 Nuestro Rincón Eterno ❤️
+        ❤️ Nuestro Rincón Eterno ❤️
     </h1>
     """, unsafe_allow_html=True)
 
